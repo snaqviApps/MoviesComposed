@@ -18,6 +18,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "API_KEY", "${properties["API_KEY_VALUE"]}")
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -42,8 +45,9 @@ android {
     }
     buildFeatures {
         compose = true
-        viewBinding = true
-        dataBinding = true
+        buildConfig = true
+//        viewBinding = true
+//        dataBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.6"
@@ -75,16 +79,16 @@ dependencies {
 
 
     // Navigation
-    implementation("androidx.navigation:navigation-compose:2.7.5")
+    implementation("androidx.navigation:navigation-compose:2.7.6")
 
     // Room
-    implementation("androidx.room:room-ktx:2.6.0")
-    ksp("androidx.room:room-compiler:2.6.0")
-    implementation("androidx.room:room-paging:2.6.0")
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-paging:2.6.1")
 
     // Dagger - Hilt
     implementation("com.google.dagger:hilt-android:2.48")
-    ksp("com.google.dagger:hilt-compiler:2.44")
+    ksp("com.google.dagger:hilt-compiler:2.48")
     ksp("androidx.hilt:hilt-compiler:1.1.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
