@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.moviescomposed"
+    namespace = "ghar.learn.moviescomposed"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.moviescomposed"
+        applicationId = "ghar.learn.moviescomposed"
         minSdk = 28
         targetSdk = 34
         versionCode = 1
@@ -27,7 +27,13 @@ android {
     }
 
     buildTypes {
+//        val baseURL_Value = "https://api.themoviedb.org/3/"
+        debug {
+//            buildConfigField "String", "API_URL", "\"https://url/pre/\""
+            buildConfigField("String", "BASE_URL", "${properties["BASE_URL_VALUE"]}")
+        }
         release {
+            buildConfigField("String", "BASE_URL", "${properties["BASE_URL_VALUE"]}")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
