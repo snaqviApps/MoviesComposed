@@ -29,7 +29,7 @@ data class MovieEntity (
     val voteAverage: Double,
     val voteCount: Int,
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey         // not "autoGenerate", as it is coming in api-
     val id: Int,
     val category: String
 )

@@ -34,6 +34,8 @@ import androidx.navigation.compose.rememberNavController
 import ghar.learn.moviescomposed.R
 import ghar.learn.moviescomposed.movielist.presentation.MovieListUIEvent
 import ghar.learn.moviescomposed.movielist.presentation.MovieListViewModel
+import ghar.learn.moviescomposed.movielist.presentation.PopularMoviesScreen
+import ghar.learn.moviescomposed.movielist.presentation.UpcomingMoviesScreen
 import ghar.learn.moviescomposed.movielist.util.Screen
 
 /**
@@ -42,10 +44,9 @@ import ghar.learn.moviescomposed.movielist.util.Screen
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavHostController) {
-
+fun HomeScreen(navController: NavHostController) {                  // to be navigated to DetailsScreen upon clicking to an Image
     val movieListViewModel = hiltViewModel<MovieListViewModel>()
-    val movieState = movieListViewModel.movieListState.collectAsState().value
+    val movieListState = movieListViewModel.movieListState.collectAsState().value
 
     /** Bottom Navigation */
     val bottomNavController = rememberNavController()
@@ -62,10 +63,10 @@ fun HomeScreen(navController: NavHostController) {
         topBar = {
             TopAppBar (
                 title = {
-                    Text(text = if (movieState.isCurrentPopularScreen) {
-                        stringResource(id = R.string.popular)
+                    Text(text = if (movieListState.isCurrentPopularScreen) {
+                        stringResource(id = R.string.popular_movies)
                     } else {
-                        stringResource(id = R.string.upcoming)
+                        stringResource(id = R.string.upcoming_movies)
                     },
                         fontSize = 20.sp
                     )
@@ -85,14 +86,21 @@ fun HomeScreen(navController: NavHostController) {
             /** NavController for the two screens (Popular and Upcoming) */
             NavHost(
                 navController = bottomNavController,
-//                graph =
                 startDestination = Screen.PopularMovieList.rout
             ) {
                composable(Screen.PopularMovieList.rout){
-//                   PopularMoviesScreen()
+                   PopularMoviesScreen (
+                       navHostController = navController,               // to be sent to Popular / Upcoming screens for DetailsScreen, upon clicking to an Image
+                       movieListState = movieListState,
+                       onEvent = movieListViewModel::onEvent
+                   )
                }
-                composable(Screen.PopularMovieList.rout){
-//                   UpcomingMoviesScreen()
+                composable(Screen.UpcomingMovieList.rout){
+                   UpcomingMoviesScreen(
+                       navHostController = navController,
+                       movieListState = movieListState,
+                       onEvent = movieListViewModel::onEvent
+                   )
                }
             }
         }
