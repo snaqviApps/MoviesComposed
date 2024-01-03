@@ -20,7 +20,7 @@ class MovieListViewModel @Inject constructor(
     private val iMovieListRepository: IMoviesListRepository
 ) : ViewModel() {
     private val _movieListState = MutableStateFlow(MovieListState())
-    private val movieListState: StateFlow<MovieListState> = _movieListState.asStateFlow()
+    val movieListState: StateFlow<MovieListState> = _movieListState.asStateFlow()
 
     init {
         getPopularMovieList(false)

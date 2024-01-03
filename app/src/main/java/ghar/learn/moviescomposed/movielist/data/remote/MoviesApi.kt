@@ -18,3 +18,12 @@ interface MovieApi {
         const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
     }
 }
+
+/**
+ * success sample: https://api.themoviedb.org/3/movie/popular?page=1&api_key=API_KEY
+ *  where,
+ *  BASE_URL: https://api.themoviedb.org/3/
+ *  category: popular
+ *
+ *
+ */
