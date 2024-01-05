@@ -2,7 +2,7 @@ package ghar.learn.moviescomposed.movielist.presentation
 
 import ghar.learn.moviescomposed.movielist.domain.model.Movie
 
-data class MovieListState(
+data class MovieListState (
     val isLoading: Boolean = false,
     val isCurrentPopularScreen: Boolean = false,
 

@@ -18,6 +18,7 @@ import androidx.navigation.navArgument
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import ghar.learn.moviescomposed.ui.theme.MoviesComposedTheme
 import dagger.hilt.android.AndroidEntryPoint
+import ghar.learn.moviescomposed.details.presentation.DetailsScreen
 import ghar.learn.moviescomposed.movielist.util.Screen
 
 @AndroidEntryPoint
@@ -28,12 +29,13 @@ class MainActivity : ComponentActivity() {
             MoviesComposedTheme {
                 // A surface container using the 'background' color from the theme
                 SetSlideBarColor(MaterialTheme.colorScheme.inverseOnSurface)
-                Surface(
+                Surface (
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    // val movieListViewModel = hiltViewModel<MovieListViewModel>()       // checking if backEnd call is working using functions
-                    // in 'init' block of viewModel-class
+                    // to test if backEnd call is working using function-call below
+                    // (in 'init' block of viewModel-class)
+                    // val movieListViewModel = hiltViewModel<MovieListViewModel>()
 
                     val navController = rememberNavController()
                     NavHost(
@@ -43,15 +45,14 @@ class MainActivity : ComponentActivity() {
                         composable(Screen.Home.rout) {
                             HomeScreen(navController)
                         }
-
                         composable(Screen.Details.rout + "/{movieId}",
                             arguments = listOf(
                                 navArgument("movieId") {
                                     type = NavType.IntType
                                 }
                             )
-                        ){ navBackStackEntry ->
-//                            DetailsScreen(navBackStackEntry)              coming soon
+                        ) {
+                            DetailsScreen()
                         }
                     }
 

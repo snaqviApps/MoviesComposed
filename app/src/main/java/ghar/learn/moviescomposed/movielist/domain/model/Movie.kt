@@ -10,11 +10,16 @@ data class Movie (
     val backdropPath: String,
 
     val genreIds: List<Int>,
+    @SerializedName("original_language")
     val originalLanguage: String,
     val originalTitle: String,
     val overview: String,
     val popularity: Double,
+
+    @SerializedName("poster_path")    // POJO has as: "poster_path"
     val posterPath: String,
+
+    @SerializedName("release_Date")
     val releaseDate: String,
     val title: String,
     val video: Boolean,

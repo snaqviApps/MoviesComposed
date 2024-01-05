@@ -92,6 +92,7 @@ fun MovieItem (
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
+                    modifier = Modifier.size(70.dp),
                     imageVector = Icons.Rounded.ImageNotSupported,
                     contentDescription = movie.title
                 )
